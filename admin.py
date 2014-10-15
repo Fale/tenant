@@ -1,8 +1,7 @@
 from django.contrib import admin
-from projects.models import Project, ACL
+from tenant.models import Tenant
 
-class ProjectAdmin(admin.ModelAdmin):
+class TenantAdmin(admin.ModelAdmin):
     fields =  ['name']
 
-admin.site.register(Project)
-admin.site.register(ACL)
+admin.site.register(Tenant)
