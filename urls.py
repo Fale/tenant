@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-#from .views import canvas, item, logout
+from .views import project
 
 urlpatterns = patterns('',
     url(r'^$', project.list, name='listCanvas'),

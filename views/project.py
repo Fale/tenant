@@ -4,8 +4,8 @@ from django.contrib.auth import logout
 from django.utils import simplejson
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
-from projects.models import Project, ACL
-from projects.forms import ProjectForm, ACLForm
+from project.models import Project, ACL
+from project.forms import ProjectForm, ACLForm
 
 @login_required
 def list(request):
