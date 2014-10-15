@@ -11,12 +11,12 @@ RIGHTS = (
 
 class Tenant(models.Model):
     name = models.CharField(max_length = 200)
-    user = models.iManyToManyField(User, through='Membership')
+    user = models.ManyToManyField(User, through='Membership')
 
     def __str__(self):
         return self.name
 
-class Membership(model.Model):
+class Membership(models.Model):
     tenant = models.ForeignKey(Tenant)
     user = models.ForeignKey(User)
-    rights = models.CharField(choices = RIGHTS)
+    rights = models.CharField(max_length = 1, choices = RIGHTS)
