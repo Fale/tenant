@@ -5,7 +5,7 @@ from django.utils import simplejson
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from tenant.models import Tenant, Membership
-#from tenant.forms import ProjectForm, ACLForm
+from tenant.forms import TenantForm
 
 @login_required
 def list(request):
@@ -31,23 +31,23 @@ def show(request, canvas_id):
     return render(request, 'canvas/canvas.html', context)
 
 @login_required
-def edit(request, project_id = None):
-    if project_id:
-        project = get_object_or_404(Project, pk=canvas_id)
-        if projects.users != request.user:
-            return HttpResponseForbidden()
+def edit(request, tenant_id = None):
+    if tenant_id:
+        tenant = get_object_or_404(Tenant, pk=tenant_id)
+#        if tenant.users != request.user:
+#            return HttpResponseForbidden()
     else:
-        canvas = Canvas(owner=request.user)
+        tenant = Tenant()
 
     if request.POST:
-        form = CanvasForm(request.POST, instance=canvas)
+        form = TenantForm(request.POST, instance=tenant)
         if form.is_valid():
             form.save()
-            return redirect('listCanvas')
+            return redirect('listTenant')
     else:
-        form = CanvasForm(instance=canvas)
+        form = TenantForm(instance=tenant)
 
-    return render(request, 'canvas/add.html', {
+    return render(request, 'tenant/edit.html', {
         'form': form,
     })
 

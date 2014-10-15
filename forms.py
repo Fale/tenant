@@ -1,12 +1,6 @@
 from django.forms import ModelForm
-from project.models import Project, ACL
+from tenant.models import Tenant
 
-class ProjectForm(ModelForm):
+class TenantForm(ModelForm):
     class Meta:
-        model = Project
-        exclude=['owner']
-
-class ACLForm(ModelForm):
-    class Meta:
-        model = ACL
-
+        model = Tenant
