@@ -21,7 +21,7 @@ class Project(models.Model):
 class ACL(models.Model):
     project = models.ForeignKey('Project', related_name="users", related_query_name="user")
     person = models.ForeignKey(User)
-    right = models.CharField(max_length = 1, choice = RIGHTS)
+    right = models.CharField(max_length = 1, choices = RIGHTS)
 
     def __str__(self):
         return self.title

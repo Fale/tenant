@@ -1,0 +1,54 @@
+{% extends "template.html" %}
+
+{% block content %}
+    <h1 class="addable">Projects <a class="glyphicon glyphicon-plus" id="add" href="{% url 'addProjects' %}"></a></h1>
+    {% if items_list %}
+        <ul>
+        {% for item in items_list %}
+        <li class="canvas" id="canvas-{{ item.id }}">
+            <a class="canvas-title" id="canvas-{{ item.id }}-title" href="{% url 'showProject' canvas.id  %}">{{ items.name }}</a>
+            <a class="glyphicon glyphicon-pencil canvas-edit" id="canvas-{{ item.id }}-edit" href="{% url 'editProject' item.id  %}"></a>
+            <span class="glyphicon glyphicon-trash canvas-delete" id="canvas-{{ item.id }}-delete"></span>
+        </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No canvas are available.</p>
+    {% endif %}
+{% endblock %}
+
+
+{% block js %}
+    $(".addable").mouseover(function(){
+        $("#add").show();
+    });
+
+    $(".addable").mouseout(function(){
+        $("#add").hide();
+    });
+
+    $(".canvas").mouseover(function(){
+        var id = $(this).attr('id');
+        $("#" + id + "-edit").show();
+        $("#" + id + "-delete").show();
+    });
+
+    $(".canvas").mouseout(function(){
+        var id = $(this).attr('id');
+        $("#" + id + "-edit").hide();
+        $("#" + id + "-delete").hide();
+    });
+
+    $(".canvas-delete").click(function(){
+        var el = $(this).parent();
+        var id =  $(this).attr('id');
+        var url = $(location).attr('pathname') + id.split('-')[1] + '/delete/';
+        var ajax = $.ajax({
+            type: 'GET',
+            url: url
+        });
+        ajax.complete(function(jqXHR){
+            el.remove();
+        });
+    });
+{% endblock %}
