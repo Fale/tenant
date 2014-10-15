@@ -1,12 +1,12 @@
 {% extends "template.html" %}
 
 {% block content %}
-    <h1 class="addable">Tenants <a class="glyphicon glyphicon-plus" id="add" href="{% url 'addProject' %}"></a></h1>
+    <h1 class="addable">Tenants <a class="glyphicon glyphicon-plus" id="add" href="{% url 'addTenant' %}"></a></h1>
     {% if items_list %}
         <ul>
         {% for item in items_list %}
         <li class="canvas" id="canvas-{{ item.id }}">
-            <a class="canvas-title" id="canvas-{{ item.id }}-title" href="{% url 'showTenant' item.id  %}">{{ items.name }}</a>
+            <a class="canvas-title" id="canvas-{{ item.id }}-title" href="{% url 'showTenant' item.id  %}">{{ item.name }}</a>
             <a class="glyphicon glyphicon-pencil canvas-edit" id="canvas-{{ item.id }}-edit" href="{% url 'editTenant' item.id  %}"></a>
             <span class="glyphicon glyphicon-trash canvas-delete" id="canvas-{{ item.id }}-delete"></span>
         </li>
