@@ -1,10 +1,10 @@
 from django.conf.urls import patterns, url
-from .views import project
+import views
 
 urlpatterns = patterns('',
-    url(r'^$', project.list, name='listProject'),
-    url(r'^add/$', project.edit, name='addProject'),
-    url(r'^(?P<project_id>\d+)/$', project.show, name='showProject'),
-    url(r'^(?P<project_id>\d+)/edit/$', project.edit, name='editProject'),
-    url(r'^(?P<project_id>\d+)/delete/$', project.delete, name='deleteProject'),
+    url(r'^$', views.list, name='listTenant'),
+    url(r'^add/$', views.edit, name='addTenant'),
+    url(r'^(?P<tenant_id>\d+)/$', view.show, name='showTenant'),
+    url(r'^(?P<tenant_id>\d+)/edit/$', view.edit, name='editTenant'),
+    url(r'^(?P<tenant_id>\d+)/delete/$', view.delete, name='deleteTenant'),
 )

@@ -4,14 +4,14 @@ from django.contrib.auth import logout
 from django.utils import simplejson
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
-from project.models import Project, ACL
-from project.forms import ProjectForm, ACLForm
+from tenant.models import Tenant, Membership
+#from tenant.forms import ProjectForm, ACLForm
 
 @login_required
 def list(request):
-    items_list = Project.objects.all().filter(owner=request.user).order_by('name')
+    items_list = Tenant.objects.all().order_by('name')
     context = {'items_list': items_list}
-    return render(request, 'project/list.html', context)
+    return render(request, 'tenant/list.html', context)
 
 @login_required
 def show(request, canvas_id):
