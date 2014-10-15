@@ -2,10 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 RIGHTS = (
+    ('K', 'Acknowledge'),
     ('R', 'Read'),
-    ('W', 'Write'),
+    ('C', 'Create'),
+    ('E', 'Edit'),
     ('A', 'Admin'),
-    ('O', 'Owner')
 )
 
 class Tenant(models.Model):
@@ -18,4 +19,4 @@ class Tenant(models.Model):
 class Membership(model.Model):
     tenant = models.ForeignKey(Tenant)
     user = models.ForeignKey(User)
-    admin = models.BooleanField()
+    rights = models.CharField(choices = RIGHTS)
