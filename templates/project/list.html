@@ -1,7 +1,7 @@
 {% extends "template.html" %}
 
 {% block content %}
-    <h1 class="addable">Projects <a class="glyphicon glyphicon-plus" id="add" href="{% url 'addProjects' %}"></a></h1>
+    <h1 class="addable">Projects <a class="glyphicon glyphicon-plus" id="add" href="{% url 'addProject' %}"></a></h1>
     {% if items_list %}
         <ul>
         {% for item in items_list %}

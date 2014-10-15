@@ -2,10 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 RIGHTS = (
+    ('K', 'Acknowledge'),
     ('R', 'Read'),
-    ('W', 'Write'),
+    ('C', 'Create'),
+    ('E', 'Edit'),
     ('A', 'Admin'),
-    ('O', 'Owner')
 )
 
 class Project(models.Model):
@@ -20,7 +21,7 @@ class Project(models.Model):
 
 class ACL(models.Model):
     project = models.ForeignKey('Project', related_name="users", related_query_name="user")
-    person = models.ForeignKey(User)
+    user = models.ForeignKey(User)
     right = models.CharField(max_length = 1, choices = RIGHTS)
 
     def __str__(self):
